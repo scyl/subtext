@@ -5,24 +5,35 @@ module.exports = {
     jest: true,
   },
   extends: [
-    'airbnb-base',
+    "airbnb-base",
   ],
-  parser: '@typescript-eslint/parser',
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: 12,
-    sourceType: 'module',
+    sourceType: "module",
   },
   plugins: [
-    '@typescript-eslint',
+    "@typescript-eslint",
   ],
   settings: {
-    'import/resolver': {
+    "import/resolver": {
       typescript: {
-        project: '.',
+        project: ".",
       },
     },
   },
   rules: {
-    'import/extensions': 'off',
+    "import/extensions": "off",
+    quotes: ["error", "double"],
+    "no-restricted-syntax": ["off", "ForOfStatement"],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "no-use-before-define": ["error", "nofunc"],
+    "import/prefer-default-export": "off",
+    "no-mixed-operators": "off",
+    "@typescript-eslint/explicit-function-return-type": ["error"],
+    indent: ["error", 2],
   },
 };
