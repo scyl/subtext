@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node src/index.ts",
-    "start:watch": "nodemon --config nodemon.json src/index.ts",
+    "start": "NODE_PATH=./src ts-node src/index.ts",
+    "start:watch": "NODE_PATH=./src nodemon --config nodemon.json src/index.ts",
     "test": "jest",
     "lint": "eslint 'src/**/*.ts'"
   },
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/scyl/node-typescript-base#readme",
   "devDependencies": {
+    "@types/express": "^4.17.11",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.31",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
