@@ -1,5 +1,5 @@
 import {
-  GraphQLObjectType, GraphQLNonNull, GraphQLString, GraphQLList,
+  GraphQLObjectType, GraphQLNonNull, GraphQLString,
 } from "graphql";
 
 export const GraphQLSubtextResult = new GraphQLObjectType({
@@ -13,7 +13,7 @@ export const GraphQLSubtextResult = new GraphQLObjectType({
       description: "Original text to search from",
     },
     result: {
-      type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(GraphQLString))),
+      type: new GraphQLNonNull(GraphQLString),
       description: "Indexes where this subtext appears",
     },
   },

@@ -1,1 +1,1 @@
-export { subtestSearch } from "./subtest-search";
+export { subtextSearch } from "./subtext-search";

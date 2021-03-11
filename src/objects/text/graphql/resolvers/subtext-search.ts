@@ -1,7 +1,18 @@
-import { SubtextSearchResult } from "objects/text/types";
+import { FormattedSubtextSearchResult } from "objects/text/types";
 
-import { subtestSearch } from "objects/text/data";
+import { subtextSearch } from "objects/text/data";
 
-export async function resolver(): Promise<SubtextSearchResult> {
-  return subtestSearch();
+export async function resolver(): Promise<FormattedSubtextSearchResult> {
+  const searchResult = await subtextSearch();
+
+  return {
+    text: searchResult.text,
+    subtexts: searchResult.subtexts,
+    results: searchResult.results.map((subtextResult) => ({
+      subtext: subtextResult.subtext,
+      result: subtextResult.result.length > 0
+        ? subtextResult.result.map((index) => index + 1).join(", ")
+        : "<No Output>",
+    })),
+  };
 }
