@@ -2,6 +2,6 @@ import { SubtextSearchResult } from "objects/text/types";
 
 import { subtestSearch } from "objects/text/data";
 
-export function resolver():SubtextSearchResult {
+export async function resolver(): Promise<SubtextSearchResult> {
   return subtestSearch();
 }
