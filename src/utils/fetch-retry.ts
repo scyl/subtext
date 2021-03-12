@@ -1,5 +1,7 @@
 import fetch from "node-fetch";
 
+// Fetches from specified url
+// Will retry indefinitly if the response is an error
 export async function fetchRetry(url: string, options?: any): Promise<any> {
   let result: any | undefined;
 

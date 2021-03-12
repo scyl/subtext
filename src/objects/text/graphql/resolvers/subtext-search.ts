@@ -5,6 +5,7 @@ import { subtextSearch } from "objects/text/data";
 export async function resolver(): Promise<FormattedSubtextSearchResult> {
   const searchResult = await subtextSearch();
 
+  // Convert the search result to the expected format
   return {
     text: searchResult.text,
     subtexts: searchResult.subtexts,

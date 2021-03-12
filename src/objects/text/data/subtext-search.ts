@@ -1,12 +1,18 @@
 import { fetchRetry } from "utils";
 import { SubtextSearchResult } from "objects/text/types";
 
+// Do subtext search from text provided by Reckon
 export async function subtextSearch(): Promise<SubtextSearchResult> {
+  // Fetches the text to search from
   const { text }: { text: string } = await fetchRetry("https://join.reckon.com/test2/textToSearch");
+  // The search is case insenitive, so we can convert it to all lower case
   const lowerText = text.toLowerCase();
+
+  // Fetches the subtexts to search for
   const subtextsResult: { subTexts: Array<string> } = await fetchRetry("https://join.reckon.com/test2/subTexts");
   const subtexts = subtextsResult.subTexts;
 
+  // Use Knuth Morris Pratt (KMP) Pattern Searching algorithm to find the location of the subtexts
   const results = subtexts.map((subtext) => {
     const result = [];
     const lowerSubtext = subtext.toLowerCase();
@@ -41,6 +47,7 @@ export async function subtextSearch(): Promise<SubtextSearchResult> {
   };
 }
 
+// Genereate longest proper prefix which is also suffix array to be used by KMP
 function generateLPS(subtext: string): Array<number> {
   let i = 1;
   let len = 0;
