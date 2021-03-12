@@ -1,5 +1,7 @@
+import { FormattedSubtextResult } from "objects/text/types";
+
 export type FormattedSubtextSearchResult = {
   text: string;
   subtexts: Array<string>;
-  results: Array<{subtext: string, result: string}>;
+  results: Array<FormattedSubtextResult>;
 }

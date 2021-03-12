@@ -1,10 +1,9 @@
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import { GraphQLSchema } from "graphql";
-import { query } from "./graphql-schema/query";
-// import mutation from "graphql/mutation";
+import { query, mutation } from "./graphql-schema";
 
-const schema = new GraphQLSchema({ query });
+const schema = new GraphQLSchema({ query, mutation });
 
 const app = express();
 

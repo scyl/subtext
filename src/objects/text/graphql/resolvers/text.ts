@@ -1,3 +1,3 @@
-export function resolver():{} {
+export function text():{} {
   return {};
 }

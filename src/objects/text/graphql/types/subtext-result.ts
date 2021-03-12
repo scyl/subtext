@@ -1,6 +1,4 @@
-import {
-  GraphQLObjectType, GraphQLNonNull, GraphQLString,
-} from "graphql";
+import { GraphQLObjectType, GraphQLNonNull, GraphQLString } from "graphql";
 
 export const GraphQLSubtextResult = new GraphQLObjectType({
   name: "SubtextResult",
