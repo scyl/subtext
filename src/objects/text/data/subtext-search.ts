@@ -5,7 +5,7 @@ import { SubtextSearchResult } from "objects/text/types";
 export async function subtextSearch(): Promise<SubtextSearchResult> {
   // Fetches the text to search from
   const { text }: { text: string } = await fetchRetry("https://join.reckon.com/test2/textToSearch");
-  // The search is case insenitive, so we can convert it to all lower case
+  // The search is case insensitive, so we can convert it to all lower case
   const lowerText = text.toLowerCase();
 
   // Fetches the subtexts to search for
@@ -32,7 +32,7 @@ function kmpSearch(text: string, subtext: string): Array<number> {
   }
 
   const result = [];
-  const lps = generateLPS(subtext);
+  const lps = generateLps(subtext);
   let i = 0;
   let j = 0;
 
@@ -56,8 +56,8 @@ function kmpSearch(text: string, subtext: string): Array<number> {
   return result;
 }
 
-// Genereate longest proper prefix which is also suffix array to be used by KMP
-function generateLPS(subtext: string): Array<number> {
+// Generate longest proper prefix which is also suffix array to be used by KMP
+function generateLps(subtext: string): Array<number> {
   let i = 1;
   let len = 0;
   const lps: Array<number> = Array(subtext.length).fill(0);
