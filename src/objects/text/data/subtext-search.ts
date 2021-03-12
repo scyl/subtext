@@ -12,7 +12,7 @@ export async function subtextSearch(): Promise<SubtextSearchResult> {
   const subtextsResult: { subTexts: Array<string> } = await fetchRetry("https://join.reckon.com/test2/subTexts");
   const subtexts = subtextsResult.subTexts;
 
-  // Use Knuth Morris Pratt (KMP) Pattern Searching algorithm to find the location of the subtexts
+  // Use Knuth Morris Pratt (KMP) pattern searching algorithm to find the location of the subtexts
   const results = subtexts.map((subtext) => {
     const result = [];
     const lowerSubtext = subtext.toLowerCase();
