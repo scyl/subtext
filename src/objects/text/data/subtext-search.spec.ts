@@ -15,6 +15,20 @@ describe("objects.text.data.subtextSearch()", () => {
     jest.clearAllMocks();
   });
 
+  it("fetches the text to search from", async () => {
+    await subtextSearch();
+
+    expect(mockedFetchRetry).toBeCalledTimes(2);
+    expect(mockedFetchRetry).nthCalledWith(1, "https://join.reckon.com/test2/textToSearch");
+  });
+
+  it("fetches the subtexts to search for", async () => {
+    await subtextSearch();
+
+    expect(mockedFetchRetry).toBeCalledTimes(2);
+    expect(mockedFetchRetry).nthCalledWith(2, "https://join.reckon.com/test2/subTexts");
+  });
+
   it("returns the text used in the search", async () => {
     const result = await subtextSearch();
 
