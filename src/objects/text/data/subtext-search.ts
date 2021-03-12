@@ -12,31 +12,9 @@ export async function subtextSearch(): Promise<SubtextSearchResult> {
   const subtextsResult: { subTexts: Array<string> } = await fetchRetry("https://join.reckon.com/test2/subTexts");
   const subtexts = subtextsResult.subTexts;
 
-  // Use Knuth Morris Pratt (KMP) pattern searching algorithm to find the location of the subtexts
+  // Search for each of the subtext in the text to search
   const results = subtexts.map((subtext) => {
-    const result = [];
-    const lowerSubtext = subtext.toLowerCase();
-    const lps = generateLPS(subtext);
-    let i = 0;
-    let j = 0;
-
-    while (i < lowerText.length) {
-      if (lowerSubtext[j] === lowerText[i]) {
-        j += 1;
-        i += 1;
-      }
-      if (j === lowerSubtext.length) {
-        result.push(i - j);
-        j = lps[j - 1];
-      } else if (i < lowerText.length && lowerSubtext[j] !== lowerText[i]) {
-        if (j !== 0) {
-          j = lps[j - 1];
-        } else {
-          i += 1;
-        }
-      }
-    }
-
+    const result = kmpSearch(lowerText, subtext.toLowerCase());
     return { subtext, result };
   });
 
@@ -45,6 +23,37 @@ export async function subtextSearch(): Promise<SubtextSearchResult> {
     subtexts,
     results,
   };
+}
+
+// Use Knuth Morris Pratt (KMP) pattern searching algorithm to find the location of the subtexts
+function kmpSearch(text: string, subtext: string): Array<number> {
+  if (subtext.length === 0) {
+    return [];
+  }
+
+  const result = [];
+  const lps = generateLPS(subtext);
+  let i = 0;
+  let j = 0;
+
+  while (i < text.length) {
+    if (subtext[j] === text[i]) {
+      j += 1;
+      i += 1;
+    }
+    if (j === subtext.length) {
+      result.push(i - j);
+      j = lps[j - 1];
+    } else if (i < text.length && subtext[j] !== text[i]) {
+      if (j !== 0) {
+        j = lps[j - 1];
+      } else {
+        i += 1;
+      }
+    }
+  }
+
+  return result;
 }
 
 // Genereate longest proper prefix which is also suffix array to be used by KMP
